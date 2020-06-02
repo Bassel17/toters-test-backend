@@ -11,6 +11,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/', function() {
+    return "<h1>Am Alive</h1>";
 });
+
+$router->post('/add', ['uses' => 'ContactController@add_contact']);

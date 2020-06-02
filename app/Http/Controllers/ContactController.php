@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Contact;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ContactController extends Controller
 {
@@ -28,5 +29,15 @@ class ContactController extends Controller
     public function get_contacts (Request $request) {
         $contacts = Contact::all();
         return response()->json($contacts,200);
+    }
+
+    public function delete_contact (Request $request) {
+        try{
+            $contact = Contact::findOrFail($request->id);
+            $contact->delete();
+            return response()->json(["success"=>true,"message"=>"contact deleted"],200);
+        }catch(ModelNotFoundException $err){
+            return response()->json(["success"=>false,"message"=>"contact not found"],404);
+        }
     }
 }

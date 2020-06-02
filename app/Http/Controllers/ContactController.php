@@ -24,4 +24,9 @@ class ContactController extends Controller
             return response()->json(["success"=>false],400);
         }
     }
+
+    public function get_contacts (Request $request) {
+        $contacts = Contact::all();
+        return response()->json($contacts,200);
+    }
 }

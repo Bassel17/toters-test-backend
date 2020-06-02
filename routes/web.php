@@ -16,3 +16,4 @@ $router->get('/', function() {
 });
 
 $router->post('/add', ['uses' => 'ContactController@add_contact']);
+$router->get('/contacts', ['uses' => 'ContactController@get_contacts']);

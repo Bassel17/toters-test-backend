@@ -40,4 +40,16 @@ class ContactController extends Controller
             return response()->json(["success"=>false,"message"=>"contact not found"],404);
         }
     }
+
+    public function edit_contact (Request $request) {
+        try{
+            $contact = Contact::findOrFail($request->id);
+            $input = $request->all();
+            $contact->fill($input)->save();
+            return response()->json(["success"=>true,"message"=>"updated"],200);
+        }catch(ModelNotFoundException $err){
+            return response()->json(["success"=>false,"message"=>"contact not found"],404);
+        }
+    }
+
 }

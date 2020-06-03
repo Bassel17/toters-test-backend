@@ -14,6 +14,7 @@ class ContactController extends Controller
         $contact->first_name = $request->first_name;
         $contact->last_name = $request->last_name;
         $contact->phone_number = $request->phone_number;
+        $contact->email = $request->email;
         $contact->save();
     }
 
